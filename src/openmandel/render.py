@@ -63,8 +63,11 @@ def _iterations_to_color(
     height, width = escape_iter.shape
     rgb = np.zeros((height, width, 3), dtype=np.uint8)
 
-    palette_info = PALETTE_MAP.get(plan.palette)
-    colors = palette_info.colors if palette_info else [(0, 0, 0)]
+    if plan.custom_palette:
+        colors = [_parse_color(s) for s in plan.custom_palette]
+    else:
+        palette_info = PALETTE_MAP.get(plan.palette)
+        colors = palette_info.colors if palette_info else [(0, 0, 0)]
     background_rgb = _parse_background(plan.background)
 
     interior_mask = escape_iter == 0
@@ -109,13 +112,17 @@ def _iterations_to_color(
     return rgb
 
 
+def _parse_color(color_str: str) -> tuple[int, int, int]:
+    from PIL.ImageColor import getrgb
+    rgb = getrgb(color_str)
+    if len(rgb) == 4:
+        return rgb[:3]
+    return rgb
+
+
 def _parse_background(color_str: str) -> tuple[int, int, int]:
     try:
-        from PIL.ImageColor import getrgb
-        rgb = getrgb(color_str)
-        if len(rgb) == 4:
-            return rgb[:3]
-        return rgb
+        return _parse_color(color_str)
     except (ValueError, OSError):
         return (0, 0, 0)
 

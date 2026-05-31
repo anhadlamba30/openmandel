@@ -9,4 +9,5 @@ build/
 .venv/
 README.html
 README_files/
+OPENMANDEL_SPEC.md
 .DS_Store

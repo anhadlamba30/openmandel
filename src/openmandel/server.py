@@ -58,6 +58,7 @@ def render_mandelbrot_plan(
     output_path: str | None = None,
     description: str | None = None,
     overwrite: bool = False,
+    custom_palette: list[str] | None = None,
 ) -> dict:
     """Render a deterministic Mandelbrot image from explicit fractal parameters.
     Use this when you know the region, zoom, palette, and style you want.
@@ -70,6 +71,8 @@ def render_mandelbrot_plan(
     - Use mini_mandelbrot-like coordinates for nested/recursive/symbolic prompts.
     - Use antenna_tip-like coordinates for minimal/stark/needle-like prompts.
 
+    Custom palette: pass a list of color strings (hex like "#ff6432", named like "coral",
+    or rgb like "rgb(255,100,50)") with 2 to 32 stops. Overrides the named palette.
     Returns paths to the PNG image and JSON metadata. Does not return embedded image bytes."""
     plan = MandelbrotPlan(
         center_real=center_real,
@@ -85,6 +88,7 @@ def render_mandelbrot_plan(
         gamma=gamma,
         seed=seed,
         description=description,
+        custom_palette=custom_palette,
     )
     result = render_plan(plan, output_path=output_path, overwrite=overwrite)
     return result.model_dump(mode="json")

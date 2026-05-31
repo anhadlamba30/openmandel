@@ -2,7 +2,7 @@ import hashlib
 import json
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 PaletteName = Literal[
     "classic",
@@ -35,10 +35,31 @@ class MandelbrotPlan(BaseModel):
     gamma: float = Field(1.0, ge=0.25, le=4.0)
     seed: int | None = None
     description: str | None = None
+    custom_palette: list[str] | None = Field(
+        None,
+        min_length=2,
+        max_length=32,
+    )
+
+    @field_validator("custom_palette")
+    @classmethod
+    def validate_custom_palette(cls, v):
+        if v is None:
+            return v
+        from PIL.ImageColor import getrgb
+
+        for s in v:
+            try:
+                getrgb(s)
+            except Exception as e:
+                raise ValueError(f"Invalid color '{s}': {e}")
+        return v
 
     def canonical_json(self) -> str:
-        excluded = {"seed", "description"}
+        excluded = {"seed", "description", "custom_palette"}
         data = self.model_dump(mode="json", exclude=excluded)
+        if self.custom_palette is not None:
+            data["custom_palette"] = self.custom_palette
         return json.dumps(data, sort_keys=True, separators=(",", ":"))
 
     def derive_seed(self) -> int:
