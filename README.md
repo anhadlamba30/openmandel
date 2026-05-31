@@ -4,8 +4,8 @@ openmandel is an MCP server that gives AI assistants deterministic Mandelbrot im
 
 | | |
 |:---:|:---:|
-| ![Full set in classic palette](examples/images/full-set-classic.png)<br/>*Full set, classic palette, escape-time coloring* | ![Seahorse Valley in electric blue](examples/images/seahorse-valley-blue.png)<br/>*Seahorse Valley deep zoom, electric blue, smooth coloring* |
-| ![Spiral galaxy in neon purple](examples/images/spiral-galaxy-neon.png)<br/>*Spiral galaxy region, neon purple, smooth coloring* | ![Elephant Valley in gold fire](examples/images/elephant-valley-gold.png)<br/>*Elephant Valley organic coral, gold fire, smooth coloring* |
+| ![Seahorse Valley in electric blue](examples/images/seahorse-valley-blue.png)<br/>*Seahorse Valley deep zoom, electric blue, smooth coloring* | ![Boundary region in viridis](examples/images/c5-boundary-viridis.png)<br/>*Boundary region, viridis, escape-time coloring* |
+| ![Triple spiral in inferno](examples/images/z9-triple.png)<br/>*Triple spiral, inferno, smooth coloring* | ![Elephant Valley in gold fire](examples/images/elephant-valley-gold.png)<br/>*Elephant Valley organic coral, gold fire, smooth coloring* |
 
 ## Install from source
 

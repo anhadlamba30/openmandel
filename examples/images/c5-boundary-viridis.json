@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "generator": "openmandel",
+  "openmandel_version": "0.1.0",
+  "created_at": "2026-05-31T12:58:47+00:00",
+  "image_path": "/Users/anhadlamba/Misc stuff/openmandel/examples/images/c5-boundary-viridis.png",
+  "plan": {
+    "center_real": -0.726,
+    "center_imag": 0.238,
+    "zoom": 150.0,
+    "max_iter": 600,
+    "width": 1024,
+    "height": 1024,
+    "palette": "viridis",
+    "coloring": "escape_time",
+    "background": "black",
+    "contrast": 2.5,
+    "gamma": 1.2,
+    "seed": 1947156644,
+    "description": null
+  },
+  "elapsed_ms": 4151.8
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "generator": "openmandel",
+  "openmandel_version": "0.1.0",
+  "created_at": "2026-05-31T12:58:43+00:00",
+  "image_path": "/Users/anhadlamba/Misc stuff/openmandel/examples/images/z9-triple.png",
+  "plan": {
+    "center_real": -0.092,
+    "center_imag": 0.65,
+    "zoom": 2000.0,
+    "max_iter": 1200,
+    "width": 1024,
+    "height": 1024,
+    "palette": "inferno",
+    "coloring": "smooth",
+    "background": "black",
+    "contrast": 2.0,
+    "gamma": 1.5,
+    "seed": 1626456235,
+    "description": null
+  },
+  "elapsed_ms": 9930.9
+}
