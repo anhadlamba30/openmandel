@@ -1,0 +1,15 @@
+{
+  "center_real": -0.743643887037151,
+  "center_imag": 0.13182590420533,
+  "zoom": 100000,
+  "max_iter": 1200,
+  "width": 1024,
+  "height": 1024,
+  "palette": "electric_blue",
+  "coloring": "smooth",
+  "background": "black",
+  "contrast": 1.2,
+  "gamma": 0.9,
+  "seed": 12345,
+  "description": "Blue spiral deep zoom in Seahorse Valley."
+}

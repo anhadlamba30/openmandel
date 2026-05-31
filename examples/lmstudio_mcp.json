@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "openmandel": {
+      "command": "uvx",
+      "args": ["openmandel"],
+      "env": {
+        "OPENMANDEL_OUTPUT_DIR": "~/Pictures/openmandel"
+      }
+    },
+    "openmandel-dev": {
+      "command": "uv",
+      "args": ["run", "openmandel"],
+      "env": {
+        "OPENMANDEL_OUTPUT_DIR": "~/Pictures/openmandel"
+      }
+    }
+  }
+}
