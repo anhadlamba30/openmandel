@@ -1,6 +1,6 @@
 [project]
 name = "openmandel"
-version = "0.1.2"
+version = "0.2.1"
 description = "MCP server that gives AI assistants deterministic Mandelbrot image-generation tools"
 requires-python = ">=3.11"
 license = "MIT"
