@@ -1,15 +1,32 @@
 [project]
 name = "openmandel"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server that gives AI assistants deterministic Mandelbrot image-generation tools"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
+readme = "README.md"
+authors = [
+    { name = "Anhad Lamba", email = "anhadlamba30@users.noreply.github.com" },
+]
+keywords = ["mandelbrot", "fractal", "mcp", "image-generation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
 dependencies = [
     "mcp[cli]",
     "numpy",
     "pillow",
     "pydantic",
 ]
+
+[project.urls]
+Homepage = "https://github.com/anhadlamba30/openmandel"
+Repository = "https://github.com/anhadlamba30/openmandel"
+Issues = "https://github.com/anhadlamba30/openmandel/issues"
 
 [project.optional-dependencies]
 dev = [

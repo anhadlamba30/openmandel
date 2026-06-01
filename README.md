@@ -4,35 +4,27 @@ openmandel is an MCP server that gives AI assistants deterministic Mandelbrot im
 
 | | |
 |:---:|:---:|
-| ![Seahorse Valley in electric blue](examples/images/seahorse-valley-blue.png)<br/>*Seahorse Valley deep zoom, electric blue, smooth coloring* | ![Boundary region in viridis](examples/images/c5-boundary-viridis.png)<br/>*Boundary region, viridis, escape-time coloring* |
-| ![Triple spiral in inferno](examples/images/z9-triple.png)<br/>*Triple spiral, inferno, smooth coloring* | ![Elephant Valley in gold fire](examples/images/elephant-valley-gold.png)<br/>*Elephant Valley organic coral, gold fire, smooth coloring* |
+| ![Seahorse Valley in electric blue](https://raw.githubusercontent.com/anhadlamba30/openmandel/main/examples/images/seahorse-valley-blue.png)<br/>*Seahorse Valley deep zoom, electric blue, smooth coloring* | ![Boundary region in viridis](https://raw.githubusercontent.com/anhadlamba30/openmandel/main/examples/images/c5-boundary-viridis.png)<br/>*Boundary region, viridis, escape-time coloring* |
+| ![Triple spiral in inferno](https://raw.githubusercontent.com/anhadlamba30/openmandel/main/examples/images/z9-triple.png)<br/>*Triple spiral, inferno, smooth coloring* | ![Elephant Valley in gold fire](https://raw.githubusercontent.com/anhadlamba30/openmandel/main/examples/images/elephant-valley-gold.png)<br/>*Elephant Valley organic coral, gold fire, smooth coloring* |
 
 ## Install from source
 
-openmandel is currently source-install only. PyPI/uvx packaging may be added later.
-
 ```bash
-git clone https://github.com/anhadlamba30/openmandel.git
-cd openmandel
-uv sync
-uv run openmandel presets
+pip install openmandel
+# or
+uvx openmandel
 ```
 
 ## LM Studio setup
 
-After cloning, add to `mcp.json` with the absolute path to your clone:
+Add to `mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "openmandel": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "/absolute/path/to/openmandel",
-        "run",
-        "openmandel"
-      ],
+      "command": "uvx",
+      "args": ["openmandel"],
       "env": {
         "OPENMANDEL_OUTPUT_DIR": "~/Pictures/openmandel"
       }
@@ -41,7 +33,7 @@ After cloning, add to `mcp.json` with the absolute path to your clone:
 }
 ```
 
-Replace `/absolute/path/to/openmandel` with the folder where you cloned the repo. If LM Studio cannot find `uv`, run `which uv` and use the absolute path as `command`.
+If LM Studio cannot find `uvx`, run `which uvx` and use the absolute path as `command`.
 
 ## Claude Desktop setup
 
@@ -51,13 +43,8 @@ Same setup in `claude_desktop_config.json`:
 {
   "mcpServers": {
     "openmandel": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "/absolute/path/to/openmandel",
-        "run",
-        "openmandel"
-      ],
+      "command": "uvx",
+      "args": ["openmandel"],
       "env": {
         "OPENMANDEL_OUTPUT_DIR": "~/Pictures/openmandel"
       }
