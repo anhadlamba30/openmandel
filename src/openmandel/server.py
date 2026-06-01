@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import math
 from pathlib import Path
@@ -59,6 +60,7 @@ def render_mandelbrot_plan(
     description: str | None = None,
     overwrite: bool = False,
     custom_palette: list[str] | None = None,
+    return_base64: bool = False,
 ) -> dict:
     """Render a deterministic Mandelbrot image from explicit fractal parameters.
     Use this when you know the region, zoom, palette, and style you want.
@@ -73,7 +75,9 @@ def render_mandelbrot_plan(
 
     Custom palette: pass a list of color strings (hex like "#ff6432", named like "coral",
     or rgb like "rgb(255,100,50)") with 2 to 32 stops. Overrides the named palette.
-    Returns paths to the PNG image and JSON metadata. Does not return embedded image bytes."""
+
+    Set return_base64=True to get the image bytes as a base64 string in the response
+    (image_base64 field), so the AI can display the image inline."""
     plan = MandelbrotPlan(
         center_real=center_real,
         center_imag=center_imag,
@@ -91,7 +95,12 @@ def render_mandelbrot_plan(
         custom_palette=custom_palette,
     )
     result = render_plan(plan, output_path=output_path, overwrite=overwrite)
-    return result.model_dump(mode="json")
+    data = result.model_dump(mode="json")
+    if return_base64:
+        with open(result.image_path, "rb") as f:
+            data["image_base64"] = base64.b64encode(f.read()).decode("ascii")
+        data["image_mime_type"] = "image/png"
+    return data
 
 
 @mcp.tool()
@@ -113,6 +122,7 @@ def create_mandelbrot_variations(
     basename: str | None = None,
     make_contact_sheet: bool = True,
     overwrite: bool = False,
+    return_base64: bool = False,
 ) -> dict:
     """Generate multiple deterministic Mandelbrot variations from a base plan.
     Use this when you want several related images exploring a neighborhood.
@@ -121,6 +131,8 @@ def create_mandelbrot_variations(
     Args:
         count: Number of variations to generate (1-8).
         basename: Base filename for output images (without extension). Auto-derived if omitted.
+        return_base64: When True, includes base64-encoded image bytes in each result
+                       so the AI can display images inline.
 
     Returns paths to all generated images, metadata files, and optional contact sheet."""
     count = max(1, min(count, 8))
@@ -203,7 +215,17 @@ def create_mandelbrot_variations(
         output_dir=str(out_dir),
         base_seed=base_seed,
     )
-    return result.model_dump(mode="json")
+    data = result.model_dump(mode="json")
+    if return_base64:
+        for img in data["images"]:
+            with open(img["image_path"], "rb") as f:
+                img["image_base64"] = base64.b64encode(f.read()).decode("ascii")
+            img["image_mime_type"] = "image/png"
+        if contact_sheet_path:
+            with open(contact_sheet_path, "rb") as f:
+                data["contact_sheet_base64"] = base64.b64encode(f.read()).decode("ascii")
+            data["contact_sheet_mime_type"] = "image/png"
+    return data
 
 
 @mcp.tool()

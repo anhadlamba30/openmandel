@@ -57,8 +57,8 @@ Same setup in `claude_desktop_config.json`:
 
 | Tool | Description |
 |------|-------------|
-| `render_mandelbrot_plan` | Render one deterministic Mandelbrot image from explicit parameters |
-| `create_mandelbrot_variations` | Generate multiple deterministic variations with perturbations |
+| `render_mandelbrot_plan` | Render one deterministic Mandelbrot image from explicit parameters (use `return_base64` for inline display) |
+| `create_mandelbrot_variations` | Generate multiple deterministic variations with perturbations (use `return_base64` for inline display) |
 | `inspect_mandelbrot_viewport` | Preview viewport bounds, iteration guidance, and cost before rendering |
 | `list_mandelbrot_presets` | List known Mandelbrot region presets with coordinates |
 | `list_mandelbrot_palettes` | List valid palette names with style guidance |
